@@ -9,8 +9,9 @@ public class ExceptionHandler extends fr.litarvan.krobot.ExceptionHandler
     @Override
     public void handle(Throwable throwable, Command command, List<String> args, CommandContext context)
     {
-        super.handle(throwable, command, args, context); // <-- Delete/Move that to catch some exceptions
+        // Handle the command exceptions
 
-        // Handle some exceptions here
+        // By default it has a dialog and a crash report system
+        super.handle(throwable, command, args, context);
     }
 }
