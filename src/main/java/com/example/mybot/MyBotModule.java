@@ -8,6 +8,6 @@ public class MyBotModule extends AbstractModule
     protected void configure()
     {
         // Configure some bindings
-        // bind(IMyClass.class).to(MyClassImpl.class);
+        bind(fr.litarvan.krobot.ExceptionHandler.class).to(ExceptionHandler.class);
     }
 }
