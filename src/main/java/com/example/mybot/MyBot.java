@@ -60,6 +60,6 @@ public class MyBot implements IBot
             System.exit(1);
         }
 
-        Krobot.start(args[0], MyBot.class);
+        Krobot.start(args[0], MyBot.class, new MyBotModule());
     }
 }
