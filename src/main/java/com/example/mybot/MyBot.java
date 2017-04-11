@@ -4,6 +4,7 @@ import com.example.mybot.command.ExampleCommand;
 import fr.litarvan.krobot.IBot;
 import fr.litarvan.krobot.Krobot;
 import fr.litarvan.krobot.command.CommandManager;
+import fr.litarvan.krobot.command.HelpCommand;
 import fr.litarvan.krobot.config.ConfigProvider;
 import fr.litarvan.krobot.util.Dialog;
 import javax.inject.Inject;
@@ -45,11 +46,22 @@ public class MyBot implements IBot
 
     private void commands()
     {
+        commands.make("help", HelpCommand.class) // Automatically generated help
+                .description("Display the command list")
+                .register();
+
         commands.make("version", (context, args) -> {
             context.getChannel().sendMessage(Dialog.info("MyBot", "v" + VERSION)).queue();
-        }).register(); // Simple command ( !version )
+        })  // Simple command ( !version )
+                .description("Display the version of the bot")
+                .register();
 
-        commands.make("hello [name]", ExampleCommand.class).register(); // !hello with optional arg "name"
+        commands.make("hello [name]", ExampleCommand.class)
+                .description("Say hello")
+                .register() // !hello with optional arg "name"
+                    .sub("adele", ExampleCommand::handleAdele) // !hello adele
+                    .description("Say hello to adele")
+                    .register();
     }
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException
